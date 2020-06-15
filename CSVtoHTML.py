@@ -39,14 +39,17 @@ for currentCsv in csvFiles:
         warning = "To be used for PLANNING PURPOSES ONLY. Confirm due dates with the course instructors."
 
         outFile.write("<h2><span style=\"font-family: tahoma, sans-serif;\"><strong>" + title + "<br /><br /><span style=\"color: #9900ff;\">" + warning + "</span><br /><br /></strong></span></h2>")
+        outFile.write("<table style=\"width: 946px;\" height=\"1004\">\n<tbody>")
+
+        for key, value in eventsByWeek.items():
+            outFile.write("<tr style=\"width: 233.542px;\">\n<td><span style=\"font-family: tahoma, sans-serif;\"><strong> Week of " + key.strftime("%Y/%m/%d") + " &mdash; <br />Deliverables &amp;&nbsp;Weights </strong></span></td>")
+            outFile.write("<td style=\"width: 697.708px;\"> <span style=\"font-family: tahoma, sans-serif;\">" + "<br />".join(value) + "</span></td>")
+            outFile.write("</tr>")
+
+        outFile.write("</tbody>\n</table>\n<pre><br /><br /></pre>\n</body>\n</html>")
         
+        outFile.close()
 
-        outFile.write("<pre><br /><br /></pre>\n</body>\n</html>")
-        #TODO: Write to file with html tags
-        #for key, value in eventsByWeek.items():
-        #    eventsByWeek[key] =
-
-        # print(eventsByWeek[datetime.strptime('2020-06-8', '%Y-%m-%d')])
-    outputFile = currentCsv.replace('.CSV','')
-    outputFile = outputFile.replace('.csv','')
-    outputFileDir = 'output/' + outputFile + '.ics'
+    # outputFile = currentCsv.replace('.CSV','')
+    # outputFile = outputFile.replace('.csv','')
+    # outputFileDir = 'output/' + outputFile + '.ics'
