@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from csv_ical import Convert
+from CSVtoHTML import createHTMLFromDirectory
 import glob
 import os
 
@@ -10,6 +11,7 @@ csvFiles = []
 for file in glob.glob("*.csv"):
     csvFiles.append(file)
 
+createHTMLFromDirectory()
 
 for currentCsv in csvFiles:
     convert = Convert()
@@ -17,7 +19,7 @@ for currentCsv in csvFiles:
 
     outputFile = currentCsv.replace('.CSV','')
     outputFile = outputFile.replace('.csv','')
-    outputFileDir = 'output/' + outputFile + '.ics'
+    outputFileDir = 'output/' + datetime.now().strftime("%Y-%m-%d-%H-%M-%S-") + outputFile + '.ics'
     icalFileLocation = outputFileDir
 
     csv_configs = {
